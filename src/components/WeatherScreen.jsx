@@ -20,7 +20,7 @@ const WeatherScreen = ({ data, load }) => {
             </div>
         </div>
         <div className='cityTemp'>
-            <h2 className='temp'>{(data.main.temp).toFixed()}<button>℃/℉</button></h2> 
+            <h2 className='temp'>{(data.main.temp).toFixed()}<button className="changeBtn">℃/℉</button></h2> 
         </div>
     </div>
     )

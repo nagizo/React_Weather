@@ -13,6 +13,7 @@ body {
   background-size: cover;
   background-repeat: no-repeat; */
   background: linear-gradient(rgb(0,177,255),rgb(0,0,0));
+  
 }
 
 header {
@@ -27,7 +28,7 @@ img {
   height: 150px;
 }
 
-button {
+.changeBtn {
   font-size: 20px;
   position: absolute;
   top: 10%;
@@ -38,6 +39,18 @@ button {
   cursor: pointer;
 }
 
+span {
+  width: 150px;
+  height: 150px;
+  border: white;
+
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 .fa-light{
   position: absolute;
@@ -122,4 +135,59 @@ button {
   transform: translate(0,20%);
   font-size: 120px;
   color: whitesmoke;
+}
+
+.cardGroup {
+  height: 900px;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+}
+
+.week {
+  margin: 10px auto;
+  text-align: center;
+  color: rgb(255, 255, 255);
+  
+}
+
+.weatherCard {
+  width: 200px;
+  height: 250px;
+  margin: 30px;
+  border: solid 1px rgb(135, 135, 135);
+  border-radius: 10px;
+}
+
+.cardWeatherInfo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cardWeatherIcon {
+  width: 80px;
+  height: 80px;
+}
+
+.cardWeatherTemp {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+  height: 80px;
+  color: rgb(255, 255, 255);
+}
+
+.cardDetailWeather {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.detailTemHum {
+  font-size: 16px;
+  color: rgb(255, 255, 255);
+
 }

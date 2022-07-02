@@ -1,37 +1,16 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useState, useRef } from 'react'
 import './App.css';
 import SearchIcon from '@mui/icons-material/Search';
 import WeatherScreen from '../src/components/WeatherScreen';
-
+import Card from '../src/components/Card';
 
 
 
 const App = () => {
 
-  const [ Available, setAvailable ] = useState(true);
-  const [ positon, setPositon ] = useState({ latitude: null, longitude: null })
-
-  //useEffectが実行されているか判定
-  const FirstRef = useRef(true);
+  //API_KEY
   
-  //レンダリング時にGeolocationAPIが使えるか判定する
-  useEffect(() => {
-    FirstRef.current = false;
-    if ('geolocation' in navigator) {
-      setAvailable(true);
-    }
-  }, [Available]) //第二引数が変わる度にuseEffectが発火される
-
-  const getPosition = () => {
-    navigator.geolocation.getCurrentPosition(position => {
-      const { latitude, longitude } = position.coords;
-      setPositon({ latitude,longitude });
-    })
-  }
-
   
-
-
   //検索地の気象情報のデータ取得
   const [fetchdata, setFetchData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -43,7 +22,7 @@ const App = () => {
 
       const API_KEY = 'f7927c318eebf0ac033c6981f4624d57';
       const url = `https://api.openweathermap.org/data/2.5/weather?q=${textRef.current.value}&units=metric&appid=${API_KEY}`;
-
+     
       fetch(url)
           .then((res) => {
               return res.json();
@@ -52,7 +31,7 @@ const App = () => {
               console.log(data)
               setFetchData(data);
               setLoading(false);
-          })
+          })      
   }  
 
   return (
@@ -65,7 +44,9 @@ const App = () => {
             </form>
           </header>
           <WeatherScreen data={fetchdata} load={loading} />
-        
+          <Card />
+          
+          <Card />
     </div>
   )
   }
