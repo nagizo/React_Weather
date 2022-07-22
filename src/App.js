@@ -1,47 +1,64 @@
-import React from 'react'
+import React,  { useEffect, useState } from "react"
 import "./style.css" 
+import WeatherScreen from "./components/WeatherScreen"
+import Form from "./components/Form"
 
 const App = () => {
+     
+    const [data, setData] = useState([]);
+    const [lat, setLat] = useState([]);
+    const [long, setLong] = useState([]);
+    const [text, setText] = useState("");
+    
 
     const MY_API_KEY = "f7927c318eebf0ac033c6981f4624d57";
-    const URL = `https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}`;
+    const latAndoLongURL = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&units=metric&appid=${MY_API_KEY}`;
+    const cityNameURL = `https://api.openweathermap.org/data/2.5/weather?q=${text}&units=metric&appid=${MY_API_KEY}`
 
     //現在地の天気情報を取得
-    navigator.geolocation.getCurrentPosition((position) => {
-        let lat = position.coords.latitude;
-        let long = position.coords.longitude;
-        console.log(lat,long)
-    })
+    useEffect(() => {
+        const processingAPI = async () => {
+            navigator.geolocation.getCurrentPosition((position) => {
+            setLat(position.coords.latitude);
+            setLong(position.coords.longitude);
+            });
+        
+            await fetch(latAndoLongURL)
+                .then(response => {
+                    return response.json();
+                })
+                .then(weatherData => {
+                    setData(weatherData);
+                })
+        }
+        processingAPI()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[lat, long])
 
+
+    const changeSearchText = (e) => {
+        setText(e.target.value);
+    }
+
+    const onSubmit = async (e) => {
+        if ( text === "") return;
+        e.preventDefault();
+        setText("")
+    
+        await fetch(cityNameURL)
+            .then(response => {
+                return response.json();
+            })
+            .then(weatherData => {
+                setData(weatherData);
+            })
+    }
     
 
     return (
         <>
-            <div className="seachInput">
-                <input placeholder="Search for location..."></input>
-            </div>
-
-            <div className="weatherScreen">
-                <div className="weatherInfo">
-                    <h1 className="cityName">London</h1>
-                    <p className="dateInfo">2022 June 5 Sunday</p>
-                    <span className="icon">☀️</span>
-                    <div className="tempGroup">
-                        <p>Max-Temp：１０</p>
-                        <p>Min-Temp</p>
-                        <p>Humidity：１０％</p>
-                    </div>
-                </div>
-
-                <div className="tempInfo">
-                    <p className="tempText">10</p>
-                    <div className="unitBtnGroup">
-                        <button className="unitBtn"><span className="unitColor">℃</span>/℉</button>
-                        <button className="unitBtn"><span className="unitColor">℉</span>/℃</button>
-                    </div>
-                </div>
-            </div>
-            
+            <Form onChange={changeSearchText} text={text} onSubmit={onSubmit}/>
+            <WeatherScreen weatherData={data}/>
             <div className="cardGroup">
 
                 <div className="forecastCard">
