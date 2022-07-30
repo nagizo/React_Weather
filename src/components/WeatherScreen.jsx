@@ -1,5 +1,5 @@
 import React from 'react'
-import TodayDateInfo from "../components/TodaysDateInfo"
+
 
 const WeatherScreen = ( props ) => {
     const { weatherData } = props;
@@ -10,7 +10,6 @@ const WeatherScreen = ( props ) => {
             <div className="weatherScreen">
                 <div className="weatherInfo">
                     <h1 className="cityName">{weatherData?.name}</h1>
-                    <TodayDateInfo />
                     <span className="icon">☀️</span>
                     <div className="tempGroup">
                         <p>Max-Temp：{weatherData?.main?.temp_max.toFixed()}<button className="unitBtn"><span className="unitColor">℃</span>/℉</button></p>
