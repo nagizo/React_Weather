@@ -12,11 +12,16 @@ body {
     color: rgb(255, 255, 255);
 }
 
-.seachInput {
-    background-color: transparent;
+nav {
+    margin: 20px;
+    padding: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+    width: 100%;
+    height:  50px;
+    
 }
 
 input {
@@ -33,6 +38,14 @@ input {
 
 input::placeholder {
     color: rgb(255, 255, 255);
+}
+
+.roomIcon {
+    cursor: pointer;
+}
+
+.roomIcon:active {
+    color: rgb(190, 190, 190);
 }
 
 .weatherScreen {
@@ -58,8 +71,16 @@ input::placeholder {
 
 .tempGroup {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+}
+.tempGroup .max_temp {
+    color: rgb(252, 151, 0);
+}
+
+.tempGroup .min_temp {
+    color: rgb(4, 0, 252);
 }
 
 .icon{

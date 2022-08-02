@@ -1,19 +1,18 @@
 import React,  { useEffect, useState } from "react"
 import "./style.css" 
 import WeatherScreen from "./components/WeatherScreen"
-import Form from "./components/Form"
+import Nav from "./components/Nav"
 import CardScreen from "./components/CardScreen"
 
 
 
+
 const App = () => {
-    
-     
-    const [data, setData] = useState([]);
-    const [forecastData, setForecastData] = useState([]);
     const [lat, setLat] = useState([]);
     const [long, setLong] = useState([]);
+    const [data, setData] = useState([]);
     const [text, setText] = useState("");
+    const [forecastData, setForecastData] = useState([]);
     
 
     const MY_API_KEY = "f7927c318eebf0ac033c6981f4624d57";
@@ -22,9 +21,7 @@ const App = () => {
     const cityNameURL = `https://api.openweathermap.org/data/2.5/weather?q=${text}&units=metric&appid=${MY_API_KEY}`;
     const forecastCityNameURL = `https://api.openweathermap.org/data/2.5/forecast?q=${text}&units=metric&cnt=6&appid=${MY_API_KEY}`;
 
-
-    //現在地の天気情報を取得
-    useEffect(() => {
+    const getCurrentLocation = () => {
         const processingAPI = async () => {
             navigator.geolocation.getCurrentPosition((position) => {
             setLat(position.coords.latitude);
@@ -36,13 +33,16 @@ const App = () => {
                     return response.json();
                 })
                 .then(weatherData => {
-                    setData(weatherData);
+                    console.log(weatherData)
+                    setData(weatherData)
+                    
            
                 })
 
             await fetch(forecastLatLongURL)
                 .then(response => {
                     return response.json();
+                    
                 })
                 .then(forecasWeatherData => {
                     console.log(forecasWeatherData.list)
@@ -50,8 +50,17 @@ const App = () => {
                 })
         }
         processingAPI()
+    }
+    
+    //現在地の天気情報を取得
+    useEffect(() => {
+        getCurrentLocation()
         // eslint-disable-next-line react-hooks/exhaustive-deps
     },[lat, long])
+
+    const onClickIcon = () => {
+        getCurrentLocation()
+    }
 
 
     const changeSearchText = (e) => {
@@ -60,14 +69,14 @@ const App = () => {
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        setText("")
-    
+        setText('')
         await fetch(cityNameURL)
             .then(response => {
                 return response.json();
             })
             .then(weatherData => {
                 setData(weatherData);
+                console.log(weatherData)
             })
 
         await fetch(forecastCityNameURL)
@@ -83,9 +92,20 @@ const App = () => {
 
     return (
         <>
-            <Form onChange={changeSearchText} text={text} onSubmit={onSubmit}/>
-            <WeatherScreen weatherData={data}/>
-            <CardScreen forecasWeatherData={forecastData}/>
+            <Nav 
+                onChange={changeSearchText}
+                onClick={onClickIcon}
+                text={text} 
+                onSubmit={onSubmit}
+            />
+
+            <WeatherScreen 
+                weatherData={data}
+            />
+
+            <CardScreen 
+                forecasWeatherData={forecastData}
+            />
         </>
     )
 

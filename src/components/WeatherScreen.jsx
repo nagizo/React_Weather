@@ -3,7 +3,6 @@ import React from 'react'
 
 const WeatherScreen = ( props ) => {
     const { weatherData } = props;
-    
 
     return (
         <>

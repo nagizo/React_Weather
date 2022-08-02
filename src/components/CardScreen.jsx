@@ -5,16 +5,19 @@ const CardScreen = ( props ) => {
     const { forecasWeatherData } = props;
     
 
+    
+    
     return (
         <>
         <div className="cardGroup">
-            {forecasWeatherData?.map((data) => ( 
-            <div className="forecastCard">
+            
+            {forecasWeatherData?.map((data, index) => ( 
+            <div key={index} className="forecastCard">
                     <div className="item1">
-                        <p className="forecastDate">{data?.dt_txt}</p>
+                        <p className="forecastDate">{new Date(data.dt * 1000).toLocaleTimeString(["en-IN"], { hour: '2-digit', minute: '2-digit' })}</p>
                     </div>
                     <div className="item2">
-                        <p className="icon">☀️</p>
+                        <span className="icon">☀️</span>
                     </div>
                     <div className="item3">
                         <p>{data?.main?.temp.toFixed()}</p>
