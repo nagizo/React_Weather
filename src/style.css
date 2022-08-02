@@ -24,6 +24,7 @@ nav {
     
 }
 
+
 input {
     margin: 15px;
     padding: 15px;
@@ -85,9 +86,12 @@ input::placeholder {
 
 .icon{
     display: block;
+    margin: 0 auto;
     text-align: center;
-    font-size: 8rem;
+    width: 80px;
+    height: 80px;
     color: rgb(255, 255, 255);
+    outline: 0;
 }
 
 .tempGroup p {
@@ -170,7 +174,6 @@ input::placeholder {
     align-items: center;
     grid-column: 1/3;
     grid-row: 2/4;
-   
 }
 
 .item3 {

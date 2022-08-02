@@ -11,7 +11,7 @@ const Nav = ( props ) => {
         <>
         <nav>
             <RoomIcon className="roomIcon" onClick={onClick}/>
-            <form onSubmit={onSubmit}>
+            <form className="search_box" onSubmit={onSubmit}>
                 <input onChange={onChange} text={text} placeholder="Search for location..."></input>
             </form>
            

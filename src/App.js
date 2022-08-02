@@ -13,8 +13,8 @@ const App = () => {
     const [data, setData] = useState([]);
     const [text, setText] = useState("");
     const [forecastData, setForecastData] = useState([]);
-    
 
+    
     const MY_API_KEY = "f7927c318eebf0ac033c6981f4624d57";
     const latAndoLongURL = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&units=metric&appid=${MY_API_KEY}`;
     const forecastLatLongURL = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&units=metric&cnt=6&appid=${MY_API_KEY}`;
@@ -34,9 +34,7 @@ const App = () => {
                 })
                 .then(weatherData => {
                     console.log(weatherData)
-                    setData(weatherData)
-                    
-           
+                    setData(weatherData)  
                 })
 
             await fetch(forecastLatLongURL)
@@ -75,7 +73,7 @@ const App = () => {
                 return response.json();
             })
             .then(weatherData => {
-                setData(weatherData);
+                setData(weatherData); 
                 console.log(weatherData)
             })
 
@@ -89,7 +87,6 @@ const App = () => {
             })
     }
     
-
     return (
         <>
             <Nav 
