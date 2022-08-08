@@ -1,4 +1,6 @@
+import { ModeComment } from '@mui/icons-material';
 import React from 'react'
+
 
 
 const WeatherScreen = ( props ) => {
@@ -11,18 +13,14 @@ const WeatherScreen = ( props ) => {
                     <h1 className="cityName">{weatherData?.name}</h1>
                     <img className="icon" src={`http://openweathermap.org/img/wn/${weatherData?.weather?.[0]?.icon}.png`} alt="" />
                     <div className="tempGroup">
-                        <p>Max-Temp：{weatherData?.main?.temp_max.toFixed()}<button className="unitBtn"><span className="unitColor">℃</span>/℉</button></p>
-                        <p>Min-Temp：{weatherData?.main?.temp_min.toFixed()}<button className="unitBtn"><span className="unitColor">℃</span>/℉</button></p>
+                        <p>Max-Temp：{weatherData?.main?.temp_max.toFixed()}<span className="tempGroupText">℃</span></p>
+                        <p>Min-Temp：{weatherData?.main?.temp_min.toFixed()}<span className="tempGroupText">℃</span></p>
                         <p>Humidity：{weatherData?.main?.humidity}％</p>
                     </div>
                 </div>
 
                 <div className="tempInfo">
-                    <p className="tempText">{weatherData?.main?.temp.toFixed()}</p>
-                    <div className="unitBtnGroup">
-                        <button className="unitBtn"><span className="unitColor">℃</span>/℉</button>
-                        <button className="unitBtn"><span className="unitColor">℉</span>/℃</button>
-                    </div>
+                    <p className="tempText">{weatherData?.main?.temp.toFixed()}<span>℃</span></p>
                 </div>
             </div>
         </>

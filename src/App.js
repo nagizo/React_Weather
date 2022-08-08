@@ -3,6 +3,7 @@ import "./style.css"
 import WeatherScreen from "./components/WeatherScreen"
 import Nav from "./components/Nav"
 import CardScreen from "./components/CardScreen"
+import Loader from "./components/Loader"
 
 
 
@@ -47,17 +48,17 @@ const App = () => {
                     setForecastData(forecasWeatherData.list)
                 })
         }
-        processingAPI()
+        processingAPI();
     }
     
     //現在地の天気情報を取得
     useEffect(() => {
-        getCurrentLocation()
+        getCurrentLocation();
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[lat, long])
+    },[lat, long]);
 
     const onClickIcon = () => {
-        getCurrentLocation()
+        getCurrentLocation();
     }
 
 
@@ -67,14 +68,13 @@ const App = () => {
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        setText('')
         await fetch(cityNameURL)
             .then(response => {
                 return response.json();
             })
             .then(weatherData => {
                 setData(weatherData); 
-                console.log(weatherData)
+                console.log(weatherData);
             })
 
         await fetch(forecastCityNameURL)
@@ -88,22 +88,22 @@ const App = () => {
     }
     
     return (
-        <>
+        <div>
             <Nav 
                 onChange={changeSearchText}
                 onClick={onClickIcon}
                 text={text} 
                 onSubmit={onSubmit}
             />
-
-            <WeatherScreen 
-                weatherData={data}
-            />
-
+            {(typeof data.main != 'undefined') ? (
+                <WeatherScreen weatherData={data}/>
+            ):(
+                <Loader/>
+            )}
             <CardScreen 
-                forecasWeatherData={forecastData}
-            />
-        </>
+                    forecasWeatherData={forecastData}
+                />
+        </div>
     )
 
 }

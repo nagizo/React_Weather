@@ -3,9 +3,7 @@ import React from 'react'
 const CardScreen = ( props ) => {
 
     const { forecasWeatherData } = props;
-    
 
-    
     
     return (
         <>
@@ -19,12 +17,11 @@ const CardScreen = ( props ) => {
                         <img className="icon" src={`http://openweathermap.org/img/wn/${data?.weather?.[0]?.icon}.png`} alt="" />
                     </div>
                     <div className="item3">
-                        <p>{data?.main?.temp.toFixed()}</p>
-                        <button className="forecasUnitBtn"><span className="unitColor">℃</span>/℉</button>
+                        <p>{data?.main?.temp.toFixed()}<span className="cardUnitText">℃</span></p>
                     </div>
                     <div className="item4">
-                        <p>{data?.main?.temp_max.toFixed()}<button className="forecasUnitBtn"><span className="unitColor">℃</span>/℉</button></p>
-                        <p>{data?.main?.temp_min.toFixed()}<button className="forecasUnitBtn"><span className="unitColor">℃</span>/℉</button></p>
+                        <p>{data?.main?.temp_max.toFixed()}<span className="cardUnitText">℃</span></p>
+                        <p>{data?.main?.temp_min.toFixed()}<span className="cardUnitText">℃</span></p>
                         <p>{data?.main?.humidity}%</p>
                     </div>
             </div>

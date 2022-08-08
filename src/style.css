@@ -37,6 +37,11 @@ input {
     color: rgb(255, 255, 255)
 }
 
+span {
+    font-size: 35px;
+    margin-left: 8px;
+}
+
 input::placeholder {
     color: rgb(255, 255, 255);
 }
@@ -99,7 +104,7 @@ input::placeholder {
     margin: 10px;
 }
 
-.tempGroup button {
+.tempGroupText {
     font-size: 14px;
 }
 
@@ -114,33 +119,6 @@ input::placeholder {
     transform: translateY(30%);
     font-size: 7rem;
     font-weight: 800;
-
-}
-
-.unitBtnGroup {
-    position: relative;
-}
-
-.unitBtn {
-    font-size: 20px;
-    width: 60px;
-    height: 40px;
-    color: rgb(255, 255, 255);
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    transition: transform .7s;
-}
-
-.unitBtn:nth-of-type(2) {
-    position: absolute;
-    top: 0;
-    left: 0;
-    visibility: hidden;
-}
-
-.unitColor {
-    color: rgb(0, 247, 255);
 }
 
 .cardGroup {
@@ -185,13 +163,6 @@ input::placeholder {
     font-size: 30px;
 }
 
-.forecasUnitBtn {
-    font-size: 10px;
-    background-color: transparent;
-    border: none;
-    color: rgb(255, 255, 255);
-    transform: translateY(-100%);
-}
 .item4 {
     display: flex;
     justify-content: space-evenly;
@@ -207,3 +178,57 @@ input::placeholder {
 .icon {
     font-size: 50px;
 }
+
+.cardUnitText {
+    font-size: 14px;
+}
+
+.loadSpinner {
+    width: 350px;
+    height: 350px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loadSpinner span {
+    position: absolute;
+    top: 0%;
+    left: -2%;
+    width: 100%;
+    height: 100%;
+    border: 3px solid rgb(255, 255, 255);
+    animation: animate 5s linear infinite;
+}
+
+.loadSpinner span:nth-child(1) {
+    /* border-radius: 50%; */
+    border-radius: 51% 49% 70% 30% / 46% 65% 35% 54% 
+  }
+  
+  .loadSpinner span:nth-child(2) {
+    animation-direction: reverse;
+    border-radius: 73% 27% 81% 19% / 25% 65% 35% 75% 
+  }
+  
+  .loadSpinner span:nth-child(3) {
+    animation-duration: 3s;
+    border-radius: 73% 27% 81% 19% / 25% 65% 35% 75%
+  }
+
+  .loadText {
+      font-size: 24px;
+  }
+
+  @keyframes animate {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
