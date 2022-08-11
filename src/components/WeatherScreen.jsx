@@ -1,4 +1,3 @@
-import { ModeComment } from '@mui/icons-material';
 import React from 'react'
 
 
@@ -12,6 +11,7 @@ const WeatherScreen = ( props ) => {
                 <div className="weatherInfo">
                     <h1 className="cityName">{weatherData?.name}</h1>
                     <img className="icon" src={`http://openweathermap.org/img/wn/${weatherData?.weather?.[0]?.icon}.png`} alt="" />
+                    <p className="weatherConditions">{weatherData?.weather?.[0]?.main}</p>
                     <div className="tempGroup">
                         <p>Max-Temp：{weatherData?.main?.temp_max.toFixed()}<span className="tempGroupText">℃</span></p>
                         <p>Min-Temp：{weatherData?.main?.temp_min.toFixed()}<span className="tempGroupText">℃</span></p>
