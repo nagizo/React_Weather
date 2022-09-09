@@ -10,11 +10,13 @@ const Nav = ( props ) => {
     return (
         <>
         <nav>
-            <RoomIcon className="roomIcon" onClick={onClick}/>
-            <form className="search_box" onSubmit={onSubmit}>
-                <input onChange={onChange} text={text} placeholder="Search for location..."></input>
-            </form>
-           
+            <h2>ReactWeather</h2>
+            <div className="formGroup">
+                <RoomIcon className="roomIcon" onClick={onClick}/>
+                <form className="search_box" onSubmit={onSubmit}>
+                    <input onChange={onChange} text={text} placeholder="Search for location..."></input>
+                </form>
+            </div>
         </nav>
         </>
     )

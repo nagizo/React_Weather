@@ -1,12 +1,9 @@
 import React,  { useEffect, useState } from "react"
-import "./style.css" 
-import WeatherScreen from "./components/WeatherScreen"
 import Nav from "./components/Nav"
+import WeatherScreen from "./components/WeatherScreen"
 import CardScreen from "./components/CardScreen"
 import Loader from "./components/Loader"
-
-
-
+import "./style.css" 
 
 const App = () => {
     const [lat, setLat] = useState([]);
@@ -15,7 +12,6 @@ const App = () => {
     const [text, setText] = useState("");
     const [forecastData, setForecastData] = useState([]);
 
-    
     const MY_API_KEY = "f7927c318eebf0ac033c6981f4624d57";
     const latAndoLongURL = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&units=metric&appid=${MY_API_KEY}`;
     const forecastLatLongURL = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&units=metric&cnt=6&appid=${MY_API_KEY}`;
@@ -37,7 +33,7 @@ const App = () => {
                     console.log(weatherData)
                     setData(weatherData)  
                 })
-
+                
             await fetch(forecastLatLongURL)
                 .then(response => {
                     return response.json();
@@ -47,7 +43,7 @@ const App = () => {
                     console.log(forecasWeatherData.list)
                     setForecastData(forecasWeatherData.list)
                 })
-        }
+            }
         processingAPI();
     }
     
@@ -61,7 +57,6 @@ const App = () => {
         getCurrentLocation();
     }
 
-
     const changeSearchText = (e) => {
         setText(e.target.value);
     }
@@ -70,13 +65,13 @@ const App = () => {
         e.preventDefault();
         await fetch(cityNameURL)
             .then(response => {
-                return response.json();
+                return response.json(); 
             })
             .then(weatherData => {
-                setData(weatherData); 
-                console.log(weatherData);
+                setData(weatherData);
+                console.log(weatherData)
             })
-
+            
         await fetch(forecastCityNameURL)
             .then(response => {
                 return response.json();
@@ -85,27 +80,24 @@ const App = () => {
                 console.log(forecasWeatherData.list)
                 setForecastData(forecasWeatherData.list)
             })
-    }
+        }
     
     return (
-        <div>
-            <Nav 
-                onChange={changeSearchText}
-                onClick={onClickIcon}
-                text={text} 
-                onSubmit={onSubmit}
-            />
-            {(typeof data.main != 'undefined') ? (
-                <WeatherScreen weatherData={data}/>
-            ):(
-                <Loader/>
-            )}
-            <CardScreen 
+            <div>
+                <Nav 
+                    onChange={changeSearchText}
+                    onClick={onClickIcon} 
+                    text={text} 
+                    onSubmit={onSubmit}
+                />
+                {(typeof data.main != 'undefined') ? (<WeatherScreen weatherData={data}/>):(<Loader/>)}
+
+                
+                <CardScreen 
                     forecasWeatherData={forecastData}
                 />
-        </div>
+            </div> 
     )
-
 }
 
 export default App

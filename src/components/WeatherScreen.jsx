@@ -3,10 +3,11 @@ import React from 'react'
 
 
 const WeatherScreen = ( props ) => {
+
     const { weatherData } = props;
 
     return (
-        <>
+        <> 
             <div className="weatherScreen">
                 <div className="weatherInfo">
                     <h1 className="cityName">{weatherData?.name}</h1>
