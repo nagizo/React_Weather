@@ -83,20 +83,16 @@ const App = () => {
         }
     
     return (
-            <div>
-                <Nav 
-                    onChange={changeSearchText}
-                    onClick={onClickIcon} 
-                    text={text} 
-                    onSubmit={onSubmit}
-                />
-                {(typeof data.main != 'undefined') ? (<WeatherScreen weatherData={data}/>):(<Loader/>)}
-
-                
-                <CardScreen 
-                    forecasWeatherData={forecastData}
-                />
-            </div> 
+        <div>
+            <Nav 
+                onChange={changeSearchText}
+                onClick={onClickIcon} 
+                text={text} 
+                onSubmit={onSubmit}
+            />
+            {(typeof data.main != 'undefined') ? (<WeatherScreen weatherData={data}/>):(<Loader/>)}
+            <CardScreen forecasWeatherData={forecastData}/>
+        </div> 
     )
 }
 
